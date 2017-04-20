@@ -64,6 +64,25 @@
   - This is possible via automatic redundancy on multiple devices in multiple facilities in a given region
 - Availability:  Can I access my data right now?
   - 99.99% Availability
+- Data is _eventually consistent_
+
+## Access Control
+- By default, only the person who creates the bucket or object has access
+- Course-grained Control
+  - ACLs
+- Fine-grained Control
+  - S3 bucket policies
+  - IAM
+  - query-string authentication
+-Bucket policies are different from IAM (IAM section)
+  - Assocated with a bucket resource instead of an IAM principle
+  - Include an explict reference to the IAM principal in the policy, the principle can be associated to multiple AWS accounts (for cross-account access)
+
+## Static Websites
+- No server side scripting
+- Straightforward due to every object having a URL
+- Simply configure the bucket for web hosting and upload Content
+- The URL will be `<bucket-name>.s3-website-<AWS-region>.amazonaws.com.`
 
 ## EBS and EFS Overview
 - EBS is Traditional block and file storage for AWS
