@@ -117,4 +117,70 @@ The following must be done to create a public subnet with Internet access
   - Peering connections can not be created in different regions
   - Peering connections do NOT support transitive routing
   - Only one peering connection between the same two VPCs at the same time
-  
+
+## Security groups
+- A security group is a virtual stateful firewall that controls inbound and outbound traffic to AWS resources and EC2 instances
+  - All EC2 instances must be launched in a security groups
+  - If a security group is not specified, then the instance will be launched in the default security group for the VPC
+    - This default group allows communication between all resources within the security group and outbound traffic, while denying all inbound traffic
+    - Rules for the default security group may be changed, but the group can not be deleted
+- Main points
+  - Each VPC may have up to 500 security groups
+  - Each security group may have 50 inbound and 50 outbound rules
+    - If more than 100 rules need to be applied, each network interface may be associated with up to 5 security groups
+    - Unlike ACLs, only allow rules can be specified (not deny rules)
+    - Separate rules may be specified for inbound and outbound traffic
+    - By default, no inbound traffic is allowed (until inbound allow rules are specified)
+    - By default, security groups have a rule that allows all outbound traffic.  This rule can be replaced with more specific rules if desired
+    - Security groups are stateful - response traffic is not effected by the rules, unlike ACLs
+    - Instances in the same security group can not communicate without rules allowing it (the default group is an exception)
+    - Instances can be associated to different security groups after launch, changes are immediate
+
+## Network Access Control Lists (ACLs)
+- ACLs are stateless firewalls that operate on a subnet level
+- An ACL is a numbered list of rules that AWS evaluates in order, starting with the lowest number to determine if traffic is allowed in or out of a subnet
+- VPCs are created with a modifiable default ACL associated with every subnet that allows all inbound and outbound traffic.
+- Default rules for custom ACLs are to deny all inbound and outbound traffic
+- ACLs may match security group rules for extra security
+- Every subnet must be associatd with an ACL
+
+## Network Address Translation (NAT) Instances and NAT Gateways
+- By default, any instance launched in a private subnet in a VPC is not able to communicate with the Internet through the IGW
+- For common use cases, a NAT gateway opposed to a NAT instance is suggested
+  - This is because the gateway provides better availability and higher bandwidth, and requires less administrative effort than NAT Instances
+
+### NAT Instance
+- A NAT instance is a Linux AMI that is designed to accept traffic from instances within a private subnet, translate the source IP to the public IP of the instance, then forward the traffic to the IGW
+  - It also maintains the state of the forwarded traffic in order to return responses to the proper instance
+- NAT instance names contain `amzn-ami-vpc-nat`
+- To allow instances within a private subnet to access Internet resources through the IGW via a NAT instnace, do the following
+  - Create a NAT security group with outbound rules that specify the needed Internet resources by protocol, IP, and port
+  - Launch a NAT AMI as an instance in a public subnet, associate it with the NAT security group
+  - Disable the Source/Destination Check
+  - Configure the routing table to direct internet bound traffic to the NAT
+  - Allocate an EIP for the NAT
+- The end result allows outbound connections from the private subnet, but prevents traffic originating from the internet from coming in
+
+### NAT Gateway
+- A NAT Gateway is a AWS managed resource that is designed to operate like a NAT instance, but is simpler to manage and highly available within an availability zone
+- To allow instnaces within a private subnet to access Internet resources through the IGW via a NAT gateway, do the following
+  - Configure the route table to forward internet bound traffic to the NAT gateway
+  - Allocate an EIP to the NAT gateway
+
+## Virtual Private Gateways (VPGs), Customer Gateways (CGWs), and Virtual Private Networks (VPNs)
+- AWS offers two ways to cnnect a data center to a VPC, VPG and CGW
+- A VPG is a VPN Concentrator on the AWS side, while a CGW is a hardware or software device on the customer side
+- After these two elements are up, then create a VPN tunnel to link them, it gets established after the customer side of the VPN generates traffic
+  - The routing type must be specified when creating the connection
+  - If the CGW supports BGP, configure the VPN for dynamic routing
+  - If not, configure the connection for static routing
+    - For static routing, the routes for networks that should be able to communicate to the VPG must be listed
+    - Routes will be propagated through the VPC so resources on the customer side and communicate with the VPC
+- AWS VPC supports multiple CGWs, each having its own VPN connection to a single VPG (many to one).  The CGW IPs must be unique within the region
+- AWS will provide the inforamtion needed to configure the CGW and establish VPN connections with the VPG, the connection consists of 2 IPSec tunnels for higher availability
+Main points
+- the VPG is the AWS end of the VPN tunnel
+- The CGW (hardware or software) is the customer end
+- The VPN tunnel must be initiated from the CGW to the VPG
+- VPGs support both dynamic routing (with BGP) and static routing
+- the VPN connection consists of 2 IPSec tunnels for higher availability to the VPC
