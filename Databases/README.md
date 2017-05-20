@@ -140,3 +140,16 @@
 
 ### Security
 - Very similar to RDS
+
+## DynamoDB
+- Fully managed NoSQL database
+- All data is stored on high-performance SSD drives
+- Monitoring is done with CloudWatch
+
+### Data Models
+- Basic components include tables, items, and attributes
+  - A table is a collection of items
+  - An item is a collection of attributes
+- Each attribute is a key/value pair
+
+### Data Types
