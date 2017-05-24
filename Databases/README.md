@@ -153,3 +153,74 @@
 - Each attribute is a key/value pair
 
 ### Data Types
+- Lots of flexibility with database schema, only requiring a primary key when being made
+- Supported data types (Scalar, Set, Document)
+  - Scalar (exactly one value)
+    - String (text and variable length characters under 400KB)
+    - Number (38 digits of precision)
+    - Binary (Up to 400 KB in size)
+    - Boolean
+    - Null (any Scalar data type can not be empty)
+  - Set (unique list of scalar values)
+    - String
+    - Number
+    - Binary
+  - Document (Multiple nested attributes)
+    - List (ordered list of attributes of different data types)
+    - Map (unordered list of key/value pairs)
+
+#### Primary Key
+- Functions similar to a relational database
+- Main types (chosen type can not be changed after a table has been created):
+  - Partition key - one attribute, a partition (hash) key; DynamoDB builds an unordered hash index on the PK
+  - Partition and Sort Key - Made up of a partition key (above) and a sort (or range) key; each item is uniquely identified by the combination of partition and sort values (the partition key may be the same, the sort key will not)
+- PKs also have types
+- DynamoDB uses the partition key to distribute the request to the right partition
+
+#### Provisioned Capacity
+- Capacity is provisioned in read and write units
+- Can be changed with `UpdateTable`
+- CloudWatch can monitor read and write units via `ConsumedReadCapacityUnits` and `ConsumedWriteCapacityUnits`
+
+#### Secondary Indexes
+- Lets the table be queried using an alternate key
+- Types of Indexes
+  - Global - Can be different from those on the table, can be created or deleted at any time
+  - Local - Same partition key and different sort key, can only be created when the table is being created
+- Allow for searching a large table quickly
+- Only one local, many global secondary indexes
+
+### Writing and Reading Data
+- Writing
+  - Three API actions
+    - `PutItem` - Updates an existing item if it exists
+    - `UpdateItem` - Finds existing items based on the primary key and replaces the attributes, can also create items if they don't exist
+    - `DeleteItem` removes items
+  - `UpdateItem` also supports _Atomic Counters_, allowing changing values and ensuring consistency
+- Reading
+  - Done via `GetItem`
+  - If a PK uses partition and sort keys, the entire key needs to be specified
+  - Eventually consistent by default, optionally strongly consistent
+- Eventual And Strong consistency
+  - Eventually - Reads immediately after a write may not return the most recent data (stale data)
+  - Strongly - returns the most up to data, possibly delayed due to network traffic
+
+#### Batch operations
+- Up to 25 item creates or updates can be done at once
+
+#### Searching
+- Query - Uses only primary key attributes
+- Scan - reads and returns every result
+
+#### Scaling
+- Horizontal - Partitioning
+- Vertical - larger resources
+
+#### Security
+- Similar to other DB services
+
+#### Streams
+- Simplifying the tracking of changes within the last 24 hours
+- Changes are buffered in a time-ordered sequence AKA a stream
+- Each stream is a single modification
+- Stream records are grouped in shards 
