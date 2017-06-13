@@ -42,3 +42,5 @@
 - TLD Name Registrars
   - Organization or commercial entity that manages the reservation of Internet domain names
   - Registrars must be accredited by a gTLD or ccTLD
+
+## Steps in DNS Registration
