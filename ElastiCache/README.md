@@ -66,3 +66,21 @@ makes it easy to set up read replicas and fail over from the primary to a replic
   - New Memcached clusters start empty, while Redis clusters can be restored with a backup
 
 ### Replication and Multi-AZ
+- Replication is useful for rapid recovery in the event of a node failure
+- Redis offers data protection, Memcached does not
+- A replication group consists of up to 6 clusters, 5 designed as read replicas
+
+### Multi-AZ Replication Groups
+- Automates the failover and replacement of the primary node
+- A new node will replace the failed one after an existing read replica will be promoted to the primary node
+- Elasticache will update the DNS entry, so apps can find the new node
+
+### Backup and Recovery
+- Redis clusters can create snapshots, Memcached can not create snapshots because it is always in-memory
+- It is best to perform a snapshot against one of the read replicas instead of the primary node
+- Manual and Automated snapshots can be used
+
+### Access Control
+- Access is primarily controlled by restricting inbound network access to the cluster, this is accomplished through security groups
+- Additional security can be restricted at the subnet level with accomplished
+- Access to the infrastructure and endpoints can be defined separately
