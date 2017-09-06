@@ -6,4 +6,4 @@
 - Ansible on EC2 SM - https://aws.amazon.com/blogs/mt/running-ansible-playbooks-using-ec2-systems-manager-run-command-and-state-manager/?sc_channel=sm&sc_campaign=mt_blog&sc_publisher=fb_ln&sc_content=blog_post&sc_country=global&sc_geo=global&sc_outcome=aware&adbsc=social_blogs_20170601_72688357&adbid=1311924702178225&adbpl=fb&adbpr=153063591397681
 - DBMS Optimization with ML - https://aws.amazon.com/blogs/ai/tuning-your-dbms-automatically-with-machine-learning/
 - Messaging Queues - https://aws.amazon.com/message-queue/?sc_channel=sm&sc_campaign=Launch&sc_publisher=FACEBOOK&sc_country=Global&sc_geo=GLOBAL&sc_outcome=awareness&sc_content=whatismessagequeue&sc_category=Amazon_Simple%20Queue%20Service&linkId=40073885
-- Getting Started, an Educators Guide - https://aws.amazon.com/blogs/publicsector/an-educators-guide-to-getting-started-on-aws/?sc_channel=sm&sc_campaign=Public_Sector_Blog,Public_Sector&sc_publisher=FACEBOOK&sc_country=Global&sc_geo=GLOBAL&sc_outcome=awareness&trk=_FACEBOOK&sc_content=wwps_blog&linkId=41858657
+- Getting Started, an Educators Guide - https://aws.amazon.com/blogs/publicsector/an-educators-guide-to-getting-started-on-aws/
