@@ -8,3 +8,4 @@
 - Messaging Queues - https://aws.amazon.com/message-queue/?sc_channel=sm&sc_campaign=Launch&sc_publisher=FACEBOOK&sc_country=Global&sc_geo=GLOBAL&sc_outcome=awareness&sc_content=whatismessagequeue&sc_category=Amazon_Simple%20Queue%20Service&linkId=40073885
 - Getting Started, an Educators Guide - https://aws.amazon.com/blogs/publicsector/an-educators-guide-to-getting-started-on-aws/
 - Amazon Macie - https://docs.aws.amazon.com/macie/latest/userguide/what-is-macie.html?sc_channel=sm&sc_campaign=Launch_Campaign&sc_publisher=FACEBOOK&sc_country=Global&sc_geo=GLOBAL&sc_outcome=awareness&trk=sm_Macie_60e3e922_user_guide_FACEBOOK&sc_content=Macie_60e3e922_user_guide&sc_category=Amazon_Macie&linkId=41860402
+- https://hackernoon.com/creating-a-serverless-uptime-monitor-getting-alerted-by-sms-lambda-zappa-python-flask-15c5fb31027
