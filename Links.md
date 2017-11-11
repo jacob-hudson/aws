@@ -10,3 +10,4 @@
 - Amazon Macie - https://docs.aws.amazon.com/macie/latest/userguide/what-is-macie.html?sc_channel=sm&sc_campaign=Launch_Campaign&sc_publisher=FACEBOOK&sc_country=Global&sc_geo=GLOBAL&sc_outcome=awareness&trk=sm_Macie_60e3e922_user_guide_FACEBOOK&sc_content=Macie_60e3e922_user_guide&sc_category=Amazon_Macie&linkId=41860402
 - https://hackernoon.com/creating-a-serverless-uptime-monitor-getting-alerted-by-sms-lambda-zappa-python-flask-15c5fb31027
 - https://aws.amazon.com/about-aws/whats-new/2017/11/amazon-ecs-allows-containers-to-directly-access-environmental-metadata/
+- https://www.cloudassessments.com/blog/using-your-first-microservice-with-aws-lambda/
