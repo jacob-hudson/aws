@@ -11,3 +11,4 @@
 - https://hackernoon.com/creating-a-serverless-uptime-monitor-getting-alerted-by-sms-lambda-zappa-python-flask-15c5fb31027
 - https://aws.amazon.com/about-aws/whats-new/2017/11/amazon-ecs-allows-containers-to-directly-access-environmental-metadata/
 - https://www.cloudassessments.com/blog/using-your-first-microservice-with-aws-lambda/
+- https://dev.to/koenighotze/serverless-hype-train-with-aws-lambda-21p
